@@ -4,7 +4,7 @@
     "creator": "namy",
     "rating": "Extreme",
     "firstVictor": "cland",
-    "ranking": 9999,
+    "ranking": 1,
     "image": "https://via.placeholder.com/250"
   },
   {
@@ -12,7 +12,7 @@
     "creator": "pp",
     "rating": "Extreme",
     "firstVictor": "GylyMonster",
-    "ranking": 9999,
+    "ranking": 2,
     "image": "https://via.placeholder.com/250"
   },
   {
@@ -20,7 +20,7 @@
     "creator": "flyingnarwhale",
     "rating": "Extreme",
     "firstVictor": "YCH",
-    "ranking": 9999,
+    "ranking": 3,
     "image": "https://via.placeholder.com/250"
   },
   {
@@ -28,7 +28,7 @@
     "creator": "flyingnarwhale",
     "rating": "Extreme",
     "firstVictor": "flyingnarwhale",
-    "ranking": 9999,
+    "ranking": 4,
     "image": "https://via.placeholder.com/250"
   },
   {
@@ -36,7 +36,7 @@
     "creator": "organ",
     "rating": "Extreme",
     "firstVictor": "organ",
-    "ranking": 9999,
+    "ranking": 5,
     "image": "https://via.placeholder.com/250"
   }
 ]
