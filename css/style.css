@@ -39,7 +39,8 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #444;
@@ -52,6 +53,8 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #333;
 }
+
+/* Card layout for levels page */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -71,4 +74,26 @@ tr:hover {
   max-width: 100%;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+/* Footer styling */
+footer {
+  margin-top: 30px;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #444;
+}
+
+#discord-btn {
+  display: inline-block;
+  background: #5865F2;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#discord-btn:hover {
+  background: #4752C4;
 }
