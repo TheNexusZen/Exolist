@@ -3,30 +3,40 @@
     "name": "true death",
     "creator": "namy",
     "rating": "Extreme",
-    "firstVictor": "cland"
+    "firstVictor": "cland",
+    "ranking": 9999,
+    "image": "https://via.placeholder.com/250"
   },
   {
     "name": "Brutality",
     "creator": "pp",
     "rating": "Extreme",
-    "firstVictor": "GylyMonster"
+    "firstVictor": "GylyMonster",
+    "ranking": 9999,
+    "image": "https://via.placeholder.com/250"
   },
   {
     "name": "EG - TAS 4",
     "creator": "flyingnarwhale",
     "rating": "Extreme",
-    "firstVictor": "YCH"
+    "firstVictor": "YCH",
+    "ranking": 9999,
+    "image": "https://via.placeholder.com/250"
   },
   {
     "name": "Demon 3",
     "creator": "flyingnarwhale",
     "rating": "Extreme",
-    "firstVictor": "flyingnarwhale"
+    "firstVictor": "flyingnarwhale",
+    "ranking": 9999,
+    "image": "https://via.placeholder.com/250"
   },
   {
     "name": "impossible 1",
     "creator": "organ",
     "rating": "Extreme",
-    "firstVictor": "organ"
+    "firstVictor": "organ",
+    "ranking": 9999,
+    "image": "https://via.placeholder.com/250"
   }
 ]
