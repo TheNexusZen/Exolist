@@ -1,5 +1,11 @@
 [
   {
+    "name": "true death",
+    "creator": "namy",
+    "rating": "Extreme",
+    "firstVictor": "cland"
+  },
+  {
     "name": "Brutality",
     "creator": "pp",
     "rating": "Extreme",
@@ -22,11 +28,5 @@
     "creator": "organ",
     "rating": "Extreme",
     "firstVictor": "organ"
-  },
-  {
-    "name": "true death",
-    "creator": "namy",
-    "rating": "Extreme",
-    "firstVictor": "cland"
   }
 ]
