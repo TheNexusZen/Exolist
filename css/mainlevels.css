@@ -1,0 +1,104 @@
+/* ============================= */
+/* Pointercrate-like adapted CSS */
+/* ============================= */
+
+:root {
+  --dl-bg: #111;
+  --dl-bg-alt: #1c1c1c;
+  --dl-border: #333;
+  --dl-hover: #222;
+  --dl-text: #eee;
+  --dl-text-secondary: #aaa;
+  --dl-accent: #3fa9ff;
+}
+
+/* Container for the Demon / Level list */
+.dl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Each level entry as a card / row */
+.dl-entry {
+  display: flex;
+  align-items: center;
+  background: var(--dl-bg);
+  border: 1px solid var(--dl-border);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+/* Hover effect */
+.dl-entry:hover {
+  background: var(--dl-hover);
+}
+
+/* Ranking / Number on the left */
+.dl-rank {
+  flex: 0 0 50px;
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--dl-accent);
+  border-right: 1px solid var(--dl-border);
+  padding: 10px 5px;
+}
+
+/* Thumbnail image */
+.dl-thumb {
+  flex: 0 0 120px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-right: 1px solid var(--dl-border);
+}
+
+/* Main info block */
+.dl-info {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dl-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: var(--dl-text);
+}
+
+.dl-info .meta {
+  font-size: 0.9em;
+  color: var(--dl-text-secondary);
+  margin-top: 4px;
+}
+
+/* meta fields like “By: X / Verified by: Y / Difficulty: Z” */
+.dl-info .meta span {
+  margin-right: 15px;
+}
+
+/* Responsive / mobile */
+@media (max-width: 600px) {
+  .dl-entry {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dl-thumb {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .dl-rank {
+    border-right: none;
+    margin-bottom: 5px;
+  }
+}
