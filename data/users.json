@@ -1,14 +1,20 @@
 [
   {
-    "name": "NL [TQT] Lucas",
-    "ranking": 1
+    "name": "[TQT]",
+    "ranking": 1,
+    "country": "NL",
+    "verifiedLevels": ["true death", "Brutality"]
   },
   {
     "name": "PlayerTwo",
-    "ranking": 2
+    "ranking": 2,
+    "country": "UK",
+    "verifiedLevels": ["EG - TAS 4"]
   },
   {
     "name": "PlayerThree",
-    "ranking": 3
+    "ranking": 3,
+    "country": "France",
+    "verifiedLevels": ["Demon 3", "impossible 1"]
   }
 ]
