@@ -1,4 +1,4 @@
-// Utility: fetch JSON
+// Utility to load JSON
 async function loadJSON(path) {
   try {
     const response = await fetch(path);
@@ -10,14 +10,14 @@ async function loadJSON(path) {
   }
 }
 
-// Render levels on levels.html
+// Render Levels
 async function renderLevels() {
   const container = document.getElementById("levels");
   if (!container) return;
 
   const levels = await loadJSON("data/levels.json");
 
-  // Sort by ranking (1 = top)
+  // Sort by ranking
   levels.sort((a, b) => (a.ranking || 9999) - (b.ranking || 9999));
 
   container.innerHTML = "";
@@ -27,33 +27,44 @@ async function renderLevels() {
     card.className = "card";
 
     card.innerHTML = `
-      <img src="${level.image || "https://via.placeholder.com/250"}" alt="${level.name}">
-      <h3>${level.name}</h3>
+      <img src="${level.image || 'https://via.placeholder.com/250'}" alt="${level.name}">
+      <h3>#${level.ranking || '—'} - ${level.name}</h3>
       <p><strong>Created by:</strong> ${level.creator}</p>
-      <p><strong>Verified by:</strong> ${level.verifier || "Unverified"}</p>
-      <p><strong>Difficulty:</strong> ${level.difficulty || "N/A"}</p>
-      <p><strong>Ranking:</strong> ${level.ranking || "—"}</p>
+      <p><strong>Verified by:</strong> ${level.firstVictor || "Unverified"}</p>
+      <p><strong>Difficulty:</strong> ${level.rating || "N/A"}</p>
     `;
 
     container.appendChild(card);
   });
 }
 
-// Render users on users.html
+// Render Users
 async function renderUsers() {
   const container = document.getElementById("users");
   if (!container) return;
 
   const users = await loadJSON("data/users.json");
 
+  // Sort by ranking
   users.sort((a, b) => (a.ranking || 9999) - (b.ranking || 9999));
 
-  container.innerHTML = "<ul>" +
-    users.map(user => `<li>#${user.ranking || "—"} ${user.name}</li>`).join("") +
-    "</ul>";
+  container.innerHTML = "";
+
+  users.forEach(user => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>#${user.ranking || '—'} - ${user.name}</h3>
+      <p><strong>Country:</strong> ${user.country || "Unknown"}</p>
+      <p><strong>Levels Verified:</strong> ${user.verifiedLevels ? user.verifiedLevels.length : 0}</p>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
-// Handle Discord button
+// Setup Discord button
 function setupDiscordButton() {
   const btn = document.getElementById("discord-btn");
   if (!btn) return;
@@ -66,7 +77,7 @@ function setupDiscordButton() {
   }
 }
 
-// Run on page load
+// Initialize
 window.addEventListener("DOMContentLoaded", () => {
   renderLevels();
   renderUsers();
