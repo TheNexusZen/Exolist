@@ -6,9 +6,26 @@
     "firstVictor": "GylyMonster"
   },
   {
-    "name": "None",
-    "creator": "None",
+    "name": "EG - TAS 4",
+    "creator": "flyingnarwhale",
     "rating": "Extreme",
-    "firstVictor": "None"
-  }
+    "firstVictor": "YCH"
+  },
+  {
+    "name": "Demon 3",
+    "creator": "flyingnarwhale",
+    "rating": "Extreme",
+    "firstVictor": "flyingnarwhale"
+  },
+  {
+    "name": "impossible 1",
+    "creator": "organ",
+    "rating": "Extreme",
+    "firstVictor": "organ"
+  },
+  {
+    "name": "true death",
+    "creator": "unknown",
+    "rating": "unknown",
+    "firstVictor": "cland"
 ]
