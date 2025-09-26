@@ -14,14 +14,23 @@
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    background-color: #f5f5f5;
   }
   h1 {
     margin-bottom: 20px;
+    text-align: center;
   }
   button {
-    padding: 12px 20px;
+    padding: 14px 24px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #357AE8;
   }
 </style>
 <script type="module">
@@ -29,7 +38,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebas
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-// Firebase config
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCj6LTxzxI1EUaQ-qTnZjZSkqMDvhRjEy8",
   authDomain: "exolist-b5c02.firebaseapp.com",
@@ -46,16 +55,14 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-// Sign in with Google
+// Google Sign-In button
 document.getElementById("googleSignIn").addEventListener("click", async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
-    
-    // Check Firestore for admin
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    console.log("User Doc:", userDoc.exists() ? userDoc.data() : "Does not exist");
 
+    // Check Firestore admin status
+    const userDoc = await getDoc(doc(db, "users", user.uid));
     if (userDoc.exists() && userDoc.data().isAdmin === true) {
       window.location.href = "admin.html";
     } else {
@@ -63,11 +70,12 @@ document.getElementById("googleSignIn").addEventListener("click", async () => {
       auth.signOut();
     }
   } catch (error) {
-    console.error("Google Sign-In error:", error);
+    console.error("Google Sign-In failed:", error);
+    alert("Sign-in failed. Check console for details.");
   }
 });
 
-// Redirect already logged-in admins automatically
+// Auto-redirect if already logged in as admin
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     const userDoc = await getDoc(doc(db, "users", user.uid));
