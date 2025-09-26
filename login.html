@@ -32,13 +32,18 @@
   button:hover {
     background-color: #357AE8;
   }
+  #error {
+    margin-top: 15px;
+    color: red;
+    text-align: center;
+    max-width: 300px;
+  }
 </style>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCj6LTxzxI1EUaQ-qTnZjZSkqMDvhRjEy8",
   authDomain: "exolist-b5c02.firebaseapp.com",
@@ -49,38 +54,52 @@ const firebaseConfig = {
   measurementId: "G-79CTWHYEGF"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
+const errorEl = document.getElementById("error");
+
 // Google Sign-In button
 document.getElementById("googleSignIn").addEventListener("click", async () => {
+  errorEl.textContent = "";
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
 
     // Check Firestore admin status
     const userDoc = await getDoc(doc(db, "users", user.uid));
+    console.log("User UID:", user.uid);
+    console.log("Firestore doc exists:", userDoc.exists());
+    console.log("Firestore doc data:", userDoc.data());
+
     if (userDoc.exists() && userDoc.data().isAdmin === true) {
       window.location.href = "admin.html";
     } else {
-      alert("Access denied! Admins only.");
+      errorEl.textContent = "Access denied! You are not an admin.";
       auth.signOut();
     }
-  } catch (error) {
-    console.error("Google Sign-In failed:", error);
-    alert("Sign-in failed. Check console for details.");
+  } catch (err) {
+    console.error("Google Sign-In failed:", err);
+    errorEl.textContent = "Sign-in failed: " + err.message;
   }
 });
 
 // Auto-redirect if already logged in as admin
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (userDoc.exists() && userDoc.data().isAdmin === true) {
-      window.location.href = "admin.html";
+    try {
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists() && userDoc.data().isAdmin === true) {
+        window.location.href = "admin.html";
+      } else {
+        errorEl.textContent = "Access denied! You are not an admin.";
+        auth.signOut();
+      }
+    } catch (err) {
+      console.error("Error fetching user doc:", err);
+      errorEl.textContent = "Error: " + err.message;
     }
   }
 });
@@ -89,5 +108,6 @@ onAuthStateChanged(auth, async (user) => {
 <body>
 <h1>ExoList Admin Login</h1>
 <button id="googleSignIn">Sign in with Google</button>
+<div id="error"></div>
 </body>
 </html>
