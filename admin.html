@@ -64,18 +64,36 @@ const db = getFirestore(app);
 // Check login and admin role
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
+    console.log("No user logged in");
     alert("Please log in first.");
     window.location.href = "login.html";
     return;
   }
 
-  const userDoc = await getDoc(doc(db, "users", user.uid));
-  if (!userDoc.exists() || !userDoc.data().isAdmin) {
+  console.log("Logged in user UID:", user.uid);
+
+  const userDocRef = doc(db, "users", user.uid);
+  const userDoc = await getDoc(userDocRef);
+
+  if (!userDoc.exists()) {
+    console.log("User document does not exist in Firestore");
     alert("Access denied! Admins only.");
-    window.location.href = "index.html";
+    auth.signOut();
+    window.location.href = "login.html";
     return;
   }
 
+  console.log("User document data:", userDoc.data());
+
+  if (userDoc.data().isAdmin !== true) {
+    console.log("User is not admin");
+    alert("Access denied! Admins only.");
+    auth.signOut();
+    window.location.href = "login.html";
+    return;
+  }
+
+  console.log("Admin access granted");
   document.getElementById("adminEmail").textContent = user.email;
   await loadSubmissions();
 });
