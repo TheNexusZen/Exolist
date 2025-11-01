@@ -5,7 +5,6 @@ async function loadLevels() {
     const levels = await response.json();
     list.innerHTML = '';
 
-    // Sort levels by ranking (lowest number = highest rank)
     levels.sort((a, b) => a.ranking - b.ranking);
 
     levels.forEach(lvl => {
