@@ -5,17 +5,21 @@ async function loadLevels() {
     const levels = await response.json();
     list.innerHTML = '';
 
+    // Sort by ranking
     levels.sort((a, b) => a.ranking - b.ranking);
 
     levels.forEach(lvl => {
       const div = document.createElement('div');
       div.className = 'level';
       div.innerHTML = `
-        <img src="${lvl.image}" alt="${lvl.name}">
+        <a href="${lvl.image}" target="_blank">
+          <img src="${lvl.image}" alt="${lvl.name}" onerror="this.src='IMG_2066.jpeg'">
+        </a>
         <div class="level-info">
           <div class="level-name">#${lvl.ranking} ${lvl.name}</div>
           <div class="level-meta">
             <span class="level-creator">by ${lvl.creator}</span> • 
+            <span class="level-verifier">verified by ${lvl.verifier}</span> • 
             <span class="level-rating">${lvl.rating}</span>
           </div>
         </div>
