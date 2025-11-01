@@ -62,3 +62,12 @@ main {
 .level-creator {
   color: #aaa;
 }
+.level-meta {
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+.level-rating {
+  color: #ff5050;
+  font-weight: 600;
+}
