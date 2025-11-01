@@ -5,14 +5,20 @@ async function loadLevels() {
     const levels = await response.json();
     list.innerHTML = '';
 
-    levels.forEach((lvl, i) => {
+    // Sort levels by ranking (lowest number = highest rank)
+    levels.sort((a, b) => a.ranking - b.ranking);
+
+    levels.forEach(lvl => {
       const div = document.createElement('div');
       div.className = 'level';
       div.innerHTML = `
-        <img src="${lvl.thumbnail}" alt="${lvl.name}">
+        <img src="${lvl.image}" alt="${lvl.name}">
         <div class="level-info">
-          <div class="level-name">#${i + 1} ${lvl.name}</div>
-          <div class="level-creator">by ${lvl.creator}</div>
+          <div class="level-name">#${lvl.ranking} ${lvl.name}</div>
+          <div class="level-meta">
+            <span class="level-creator">by ${lvl.creator}</span> • 
+            <span class="level-rating">${lvl.rating}</span>
+          </div>
         </div>
       `;
       list.appendChild(div);
